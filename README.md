@@ -1,61 +1,79 @@
-# 🔐 CI/CD Security Pipeline with OWASP ZAP & GitHub Actions
+# ☁️ Infrastructure as Code with Terraform & AWS
 
-This project demonstrates a simple and secure CI/CD pipeline for a web application using Docker Compose and GitHub Actions. A key part of the pipeline is the integration of [OWASP ZAP](https://www.zaproxy.org/), an open-source security scanner, which automatically scans the deployed app for common vulnerabilities.
+This project demonstrates how to provision and manage cloud infrastructure on AWS using [Terraform](https://www.terraform.io/). It is designed as a continuation of our CI/CD security pipeline project, adding automated deployment and scalability using Infrastructure as Code (IaC).
 
-## 🧱 Project Structure
+## 🌍 Overview
 
-- **Web Application** – A lightweight sample app running in a container.
-- **Docker Compose** – Manages the local multi-container environment.
-- **GitHub Actions** – Automates build, test, and security scans.
-- **OWASP ZAP** – Performs automated vulnerability scans during the CI/CD process.
+We use Terraform to define and provision the following AWS resources:
 
-## 🚀 How It Works
+- Virtual Private Cloud (VPC)
+- Subnets and Route Tables
+- EC2 Instances or ECS Services (for hosting containers)
+- Security Groups and IAM Roles
+- S3 Buckets for artifact storage (optional)
+- ALB (Application Load Balancer) for traffic routing
 
-1. **Development**
-   - The app is developed and tested locally using Docker Compose.
-   - Source code is managed with Git and hosted on GitHub.
+## ⚙️ Technologies Used
 
-2. **CI/CD Pipeline**
-   - On each `push` or `pull request`, GitHub Actions triggers a pipeline.
-   - The pipeline builds the Docker containers and starts the app.
-   - OWASP ZAP runs a security scan against the app endpoint.
-   - A scan report is generated and stored as an artifact in the workflow.
+- **Terraform** – Infrastructure as Code
+- **AWS** – Cloud provider
+- **Docker** – Container platform (if used with ECS)
+- **GitHub** – Source code and pipeline trigger
 
-3. **Security Scanning**
-   - OWASP ZAP checks for:
-     - XSS (Cross-Site Scripting)
-     - SQL Injection
-     - Security headers
-     - Other OWASP Top 10 risks
+## 📂 Project Structure
 
-## 📂 Folder Structure
-    .
-    ├── .github/workflows/ # GitHub Actions pipeline definition
-    ├── docker-compose.yml # Local container setup
-    ├── zap-config/ # ZAP configuration files
-    ├── app/ # Web application source code
-    └── README.md # Project overview
+.
+├── terraform/
+│ ├── main.tf # Core infrastructure definitions
+│ ├── variables.tf # Input variables
+│ ├── outputs.tf # Outputs for other modules/tools
+│ └── provider.tf # AWS provider configuration
+├── .gitignore
+└── README.md
 
-    
-## 📄 Reports
+markdown
+Copy
+Edit
 
-- ZAP scan results are exported as HTML and attached to the GitHub Actions run.
-- Reports can be downloaded directly from the GitHub Actions artifacts section.
+## 🚀 Getting Started
 
-## 🛠 Requirements
+1. **Install Prerequisites**
 
-- [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/)
-- GitHub repository with Actions enabled
+   - [Terraform](https://developer.hashicorp.com/terraform/install)
+   - AWS CLI configured with access keys
 
-## 💡 Goals
+2. **Initialize Terraform**
+   ```bash
+   terraform init
+   Plan Infrastructure
+   ```
 
-This project aims to show how security can be integrated early in the development process, using automation and open-source tools. It provides a hands-on example of DevSecOps principles in action.
+bash
+Copy
+Edit
+terraform plan
+Apply Configuration
 
-## 📌 Notes
+bash
+Copy
+Edit
+terraform apply
+Destroy (if needed)
 
-- This project is designed for local testing and CI/CD learning purposes.
-- No cloud resources are required.
+bash
+Copy
+Edit
+terraform destroy
+🔐 Security Practices
+Sensitive variables (like AWS secrets) should be managed via environment variables or secret managers.
 
----
+IAM roles and policies follow the principle of least privilege.
 
+Resources are provisioned in isolated subnets with controlled ingress/egress rules.
+
+💡 Goals
+Learn and apply Infrastructure as Code principles.
+
+Build secure, scalable AWS environments for real-world projects.
+
+Integrate infrastructure provisioning into CI/CD pipelines (future step).
