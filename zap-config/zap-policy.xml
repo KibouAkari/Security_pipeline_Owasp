@@ -1,0 +1,12 @@
+<policy>
+    <scanner>
+        <id>40012</id>
+        <enabled>true</enabled>
+        <strength>HIGH</strength>
+        <threshold>LOW</threshold>
+    </scanner>
+    <scanner>
+        <id>40014</id>
+        <enabled>false</enabled>
+    </scanner>
+</policy>

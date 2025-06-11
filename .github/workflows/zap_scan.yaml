@@ -1,23 +1,24 @@
-name: ZAP Scan
+name: OWASP ZAP Scan
 
 on:
   push:
     branches:
-      - main
+      - main 
+  pull_request:
 
 jobs:
   zap_scan:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest 
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3 
 
       - name: Set up Docker
         run: |
           docker-compose up --abort-on-container-exit
 
-      - name: Upload ZAP Report
+      - name: Upload ZAP report
         uses: actions/upload-artifact@v3
         with:
           name: zap-report

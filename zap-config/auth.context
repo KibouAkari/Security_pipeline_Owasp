@@ -1,0 +1,17 @@
+<context>
+  <name>JuiceShop</name>
+  <includeRegex>http://juice-shop:3000/.*</includeRegex>
+  <authentication>
+    <method>formBasedAuthentication</method>
+    <loginUrl>http://juice-shop:3000/rest/user/login</loginUrl>
+    <loginRequest>
+      POST http://juice-shop:3000/rest/user/login
+      Content-Type: application/json
+
+      {
+        "email": "user@example.com",
+        "password": "password123"
+      }
+    </loginRequest>
+  </authentication>
+</context>
