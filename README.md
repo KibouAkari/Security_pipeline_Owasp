@@ -54,5 +54,3 @@ This project demonstrates a simple and secure CI/CD pipeline for a web applicati
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 - GitHub repository with Actions enabled
-
-## 💡 Goals
