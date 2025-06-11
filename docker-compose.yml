@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  juice-shop:
+    image: KibouAkari/juice-shop
+    ports:
+      - "3000:3000"
+    networks:
+      - owasp-net
+
+  zap:
+    image: owasp/zap2docker-stable
+    depends_on:
+      - juice-shop
+    entrypoint: ["zap-baseline.py", "-t", "http://juice-shop:3000", "-r", "zap-report.html"]
+    volumes:
+      - ./reports:/zap/wrk
+    networks:
+      - owasp-net
+
+networks:
+  owasp-net:
+    driver: bridge
