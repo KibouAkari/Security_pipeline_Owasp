@@ -8,17 +8,14 @@ services:
     networks:
       - zap-net
 
-  zap:
-    image: owasp/zap2docker-stable # Using the official ZAP Docker image
-    depends_on:
-      - juice-shop
-entrypoint: >
-  zap-baseline.py  -t http://juice-shop:3000  -r zap-report.html  -c zap-config/baseline.conf
-    volumes:
-      - ./reports:/zap/wrk
-    networks:
-      - zap-net 
-
-networks:
-  zap-net:
-    driver: bridge
+zap:
+  image: owasp/zap2docker-stable
+  depends_on:
+    - juice-shop
+  entrypoint: >
+    /zap/zap-baseline.py  -t http://juice-shop:3000  -r zap-report.html  -c zap-config/baseline.conf
+  volumes:
+    - ./reports:/zap/wrk
+    - ./zap-config:/zap/zap-config
+  networks:
+    - zap-net
