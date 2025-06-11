@@ -2,20 +2,27 @@ version: '3.8'
 
 services:
   juice-shop:
-    image: ghcr.io/kibouakari/juice-shop:latest # Using a pre-built Juice Shop image
+    image: bkimminich/juice-shop
     ports:
       - "3000:3000"
     networks:
       - zap-net
 
-zap:
-  image: owasp/zap2docker-stable
-  depends_on:
-    - juice-shop
-  entrypoint: >
-    /zap/zap-baseline.py  -t http://juice-shop:3000  -r zap-report.html  -c zap-config/baseline.conf
-  volumes:
-    - ./reports:/zap/wrk
-    - ./zap-config:/zap/zap-config
-  networks:
-    - zap-net
+  zap:
+    image: owasp/zap2docker-stable
+    depends_on:
+      - juice-shop
+    entrypoint: >
+      /zap/zap-baseline.py 
+      -t http://juice-shop:3000 
+      -r zap-report.html 
+      -c zap/zap-config/baseline.conf
+    volumes:
+      - ./reports:/zap/wrk
+      - ./zap-config:/zap/zap-config
+    networks:
+      - zap-net
+
+networks:
+  zap-net:
+    driver: bridge
