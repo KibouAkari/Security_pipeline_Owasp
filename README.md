@@ -11,11 +11,6 @@ This project demonstrates a simple and secure CI/CD pipeline for a web applicati
 
 ## 🚀 How It Works
 
-
-
-
-
-
 1. **Development**
    - The app is developed and tested locally using Docker Compose.
    - Source code is managed with Git and hosted on GitHub.
@@ -41,10 +36,8 @@ This project demonstrates a simple and secure CI/CD pipeline for a web applicati
     ├── app/ # Web application source code
     └── README.md # Project overview
 
-
     
 ## 📄 Reports
-
 
 - ZAP scan results are exported as HTML and attached to the GitHub Actions run.
 - Reports can be downloaded directly from the GitHub Actions artifacts section.
@@ -54,3 +47,15 @@ This project demonstrates a simple and secure CI/CD pipeline for a web applicati
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 - GitHub repository with Actions enabled
+
+## 💡 Goals
+
+This project aims to show how security can be integrated early in the development process, using automation and open-source tools. It provides a hands-on example of DevSecOps principles in action.
+
+## 📌 Notes
+
+- This project is designed for local testing and CI/CD learning purposes.
+- No cloud resources are required.
+
+---
+
