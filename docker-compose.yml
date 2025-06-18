@@ -21,9 +21,11 @@ services:
     volumes:
       - ./reports:/zap/wrk
       - ./zap-config:/zap/zap-config
+      - ./zap/zap-config:/zap/wrk/zap/zap-config
     networks:
       - zap-net
 
 networks:
   zap-net:
     driver: bridge
+

@@ -14,6 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Copy ZAP configuration file
+        run: |
+          mkdir -p zap/zap-config
+          cp path/to/baseline.conf zap/zap-config/
+
       - name: Start Docker Compose (Juice Shop + ZAP)
         run: |
           docker compose up --abort-on-container-exit
@@ -22,4 +27,6 @@ jobs:
         uses: actions/upload-artifact@v4        
         with:
           name: zap-report
-          path: reports/zap-report.html
+    path: reports/zap-report.html
+
+
