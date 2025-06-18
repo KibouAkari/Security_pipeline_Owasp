@@ -18,10 +18,10 @@ jobs:
         run: |
           docker compose up --abort-on-container-exit
 
-      - name: Upload ZAP Report as Artifact
-        uses: actions/upload-artifact@v4        
-        with:
-          name: zap-report
-    path: reports/zap-report.html
+    - name: Upload ZAP Report as Artifact
+      uses: actions/upload-artifact@v4        
+      with:
+        name: zap-report
+        path: reports/zap-report.html
 
 
