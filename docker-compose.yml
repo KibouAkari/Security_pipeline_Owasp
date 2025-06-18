@@ -9,7 +9,7 @@ services:
       - zap-net
 
   zap:
-    image: ghcr.io/ictu/zap2docker-weekly
+    image: ictu/zap2docker-weekly
 
     depends_on:
       - juice-shop
