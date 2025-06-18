@@ -23,6 +23,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Install dependencies (zusätzlich)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r path/to/requirements.txt
+
       - name: Lint with flake8
         run: |
           pip install flake8
