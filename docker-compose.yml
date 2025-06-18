@@ -16,8 +16,7 @@ services:
     entrypoint: >
       /zap/zap-baseline.py 
       -t http://juice-shop:3000 
-      -r zap-report.html 
-      -c zap/zap-config/baseline.conf
+      -r zap-report.html
     volumes:
       - ./reports:/zap/wrk
       - ./zap-config:/zap/zap-config
