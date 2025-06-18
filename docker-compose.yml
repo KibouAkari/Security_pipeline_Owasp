@@ -9,7 +9,7 @@ services:
       - zap-net
 
   zap:
-    image: owasp/zap2docker-stable
+    image: ghcr.io/zaproxy/zap2docker-stable
     depends_on:
       - juice-shop
     entrypoint: >
