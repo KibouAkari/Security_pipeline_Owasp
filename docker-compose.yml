@@ -18,7 +18,7 @@ services:
       -t http://juice-shop:3000 
       -r zap-report.html
     volumes:
-      - ./reports:/zap/wrk
+      - ./reports:/zap/reports
       - ./zap-config:/zap/zap-config
       - ./zap-config:/zap/wrk/zap/zap-config
     networks:
