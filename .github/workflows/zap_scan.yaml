@@ -18,6 +18,11 @@ jobs:
         run: |
           docker compose up --abort-on-container-exit || echo "ZAP scan completed with findings"
 
+      - name: Ensure write permissions for reports folder
+        run: |
+          mkdir -p reports
+          chmod -R 777 reports
+
       - name: Upload ZAP Report as Artifact
         uses: actions/upload-artifact@v4
         with:
