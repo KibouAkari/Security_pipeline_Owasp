@@ -18,7 +18,7 @@ services:
       - ./zap-config:/zap/wrk:ro
       - ./reports:/zap/reports
     command: >
-      zap-full-scan.py -t http://juice-shop:3000 -r /zap/reports/zap-report.html -c /zap/wrk/zap-policy.xml
+      zap-full-scan.py -t http://juice-shop:3000 -r /zap/reports/zap-report.html -c /zap/wrk/zap-policy.txt
 
 networks:
   zapnet:
