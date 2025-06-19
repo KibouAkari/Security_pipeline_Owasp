@@ -1,25 +1,26 @@
 # 🔐 CI/CD Security Pipeline with OWASP ZAP & GitHub ActionsAdd commentMore actions
 
-This project demonstrates a simple and secure CI/CD pipeline for a web application using Docker Compose and GitHub Actions. A key part of the pipeline is the integration of [OWASP ZAP](https://www.zaproxy.org/), an open-source security scanner, which automatically scans the deployed app for common vulnerabilities.
+This project demonstrates a secure and automated CI/CD pipeline for scanning a vulnerable web application using Docker Compose and GitHub Actions. A key part of the pipeline is the integration of [OWASP ZAP](https://www.zaproxy.org/), an open-source security scanner, which automatically scans the deployed app for common vulnerabilities.
 
 ## 🧱 Project Structure
 
-- **Web Application** – A lightweight sample app running in a container.
-- **Docker Compose** – Manages the local multi-container environment.
-- **GitHub Actions** – Automates build, test, and security scans.
+- **OWASP Juice Shop** – A deliberately insecure web application used for security testing.
+- **Docker Compose** – Manages the multi-container environment for Juice Shop and ZAP.
+- **GitHub Actions** – Automates testing and security scans on every push or pull request.
 - **OWASP ZAP** – Performs automated vulnerability scans during the CI/CD process.
 
 ## 🚀 How It Works
 
 1. **Development**
-   - The app is developed and tested locally using Docker Compose.
+   - The app is deployed automatically via GitHub Actions.
    - Source code is managed with Git and hosted on GitHub.
 
 2. **CI/CD Pipeline**
-   - On each `push` or `pull request`, GitHub Actions triggers a pipeline.
-   - The pipeline builds the Docker containers and starts the app.
-   - OWASP ZAP runs a security scan against the app endpoint.
-   - A scan report is generated and stored as an artifact in the workflow.
+   - On each push or pull request, GitHub Actions triggers two workflows:
+      - cicd.yml: Runs basic Python tests and linting.
+      - zap_scan.yaml: Starts Juice Shop and ZAP via Docker Compose and performs a security scan.
+   - OWASP ZAP scans the Juice Shop instance at http://juice-shop:3000.
+   - Scan reports are generated and stored as a zip folder under GitHub Actions artifacts.
 
 3. **Security Scanning**
    - OWASP ZAP checks for:
@@ -29,18 +30,26 @@ This project demonstrates a simple and secure CI/CD pipeline for a web applicati
      - Other OWASP Top 10 risks
 
 ## 📂 Folder Structure
-    .
-    ├── .github/workflows/ # GitHub Actions pipeline definition
-    ├── docker-compose.yml # Local container setup
-    ├── zap-config/ # ZAP configuration files
-    ├── app/ # Web application source code
-    └── README.md # Project overview
+      .
+      ├── .github/workflows/     # GitHub Actions pipeline definitions
+      │   ├── cicd.yml           # Linting and placeholder test
+      │   └── zap_scan.yaml      # Security scan with OWASP ZAP
+      ├── docker-compose.yml     # Local container setup for Juice Shop and ZAP
+      ├── zap/                   # Folder for storing scan reports
+      │   └── reports/
+      ├── zap-config/            # ZAP configuration files (e.g., auth.context)
+      ├── tests/                 # Placeholder test directory
+      │   └── test_example.py
+      ├── requirements.txt       # Python dependencies
+      ├── README.md              # Project overview
+      └── License
 
     
 ## 📄 Reports
 
-- ZAP scan results are exported as HTML and attached to the GitHub Actions run.
-- Reports can be downloaded directly from the GitHub Actions artifacts section.
+- ZAP scan results are exported as HTML and JSON.
+- Reports are stored in a zip folder under the GitHub Actions "Artifacts" section.
+- You can download and inspect them after each workflow run.
 
 ## 🛠 Requirements
 
@@ -55,7 +64,8 @@ This project aims to show how security can be integrated early in the developmen
 ## 📌 Notes
 
 - This project is designed for local testing and CI/CD learning purposes.
-- No cloud resources are required.
+- The auth.context file exists for future use but is not yet integrated into the scan.
+- No cloud deployment is required.
 
 ---
 
