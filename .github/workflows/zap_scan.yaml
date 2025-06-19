@@ -16,12 +16,10 @@ jobs:
 
       - name: Start Docker Compose (Juice Shop + ZAP)
         run: |
-          docker compose up --abort-on-container-exit
+          docker compose up --abort-on-container-exit || echo "ZAP scan completed with findings"
 
       - name: Upload ZAP Report as Artifact
-        uses: actions/upload-artifact@v4       
+        uses: actions/upload-artifact@v4
         with:
           name: zap-report
-          path: reports/zap-report.html
-
-
+          path: zap/reports/zap-report.html

@@ -6,25 +6,20 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - zap-net
+      - zapnet
 
   zap:
     image: ictu/zap2docker-weekly
-
     depends_on:
       - juice-shop
-    entrypoint: >
-      /zap/zap-baseline.py 
-      -t http://juice-shop:3000 
-      -r zap-report.html
-    volumes:
-      - ./reports:/zap/reports
-      - ./zap-config:/zap/zap-config
-      - ./zap-config:/zap/wrk/zap/zap-config
     networks:
-      - zap-net
+      - zapnet
+    volumes:
+      - ./zap-config:/zap/wrk:ro
+      - ./reports:/zap/reports
+    command: >
+      zap-full-scan.py -t http://juice-shop:3000 -r /zap/reports/zap-report.html -c /zap/wrk/zap-policy.xml
 
 networks:
-  zap-net:
+  zapnet:
     driver: bridge
-

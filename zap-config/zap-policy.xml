@@ -1,12 +1,47 @@
 <policy>
+    <!-- Cross Site Scripting (Reflected) -->
     <scanner>
         <id>40012</id>
         <enabled>true</enabled>
         <strength>HIGH</strength>
         <threshold>LOW</threshold>
     </scanner>
+
+    <!-- SQL Injection -->
     <scanner>
-        <id>40014</id>
+        <id>40018</id>
+        <enabled>true</enabled>
+        <strength>HIGH</strength>
+        <threshold>LOW</threshold>
+    </scanner>
+
+    <!-- Path Traversal -->
+    <scanner>
+        <id>6</id>
+        <enabled>true</enabled>
+        <strength>HIGH</strength>
+        <threshold>LOW</threshold>
+    </scanner>
+
+    <!-- Remote File Inclusion -->
+    <scanner>
+        <id>7</id>
+        <enabled>true</enabled>
+        <strength>HIGH</strength>
+        <threshold>LOW</threshold>
+    </scanner>
+
+    <!-- Server Side Include -->
+    <scanner>
+        <id>40009</id>
+        <enabled>true</enabled>
+        <strength>MEDIUM</strength>
+        <threshold>MEDIUM</threshold>
+    </scanner>
+
+    <!-- Directory Browsing -->
+    <scanner>
+        <id>0</id>
         <enabled>false</enabled>
     </scanner>
 </policy>
