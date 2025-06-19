@@ -16,12 +16,13 @@ services:
       - zapnet
     volumes:
       - ./zap-config:/zap/wrk:ro
-      - ./reports:/zap/reports
+     # - ./reports:/zap/reports
     command: >
       sh -c "sleep 10 && zap-full-scan.py
       -t http://juice-shop:3000
-      -r /zap/reports/zap-report.html
-      -J /zap/reports/zap-report.json"
+      -r /tmp/zap-report.html
+      -J /tmp/zap-report.json"
+
 
 networks:
   zapnet:

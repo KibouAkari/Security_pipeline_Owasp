@@ -14,17 +14,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Create reports folder
+        run: mkdir -p reports
+
       - name: Start Docker Compose (Juice Shop + ZAP)
         run: |
           docker compose up --abort-on-container-exit || echo "ZAP scan completed with findings"
 
-      - name: Ensure write permissions for reports folder
+      - name: Copy ZAP reports from container
         run: |
-          mkdir -p reports
-          chmod -R 777 reports
+          ZAP_CONTAINER=$(docker ps -aqf "name=zap")
+          docker cp "$ZAP_CONTAINER":/tmp/zap-report.html reports/zap-report.html || echo "No HTML report found"
+          docker cp "$ZAP_CONTAINER":/tmp/zap-report.json reports/zap-report.json || echo "No JSON report found"
 
-      - name: Upload ZAP Report as Artifact
+      - name: Upload ZAP HTML Report
         uses: actions/upload-artifact@v4
         with:
           name: zap-report
-          path: zap/reports/zap-report.html
+          path: reports/zap-report.html
