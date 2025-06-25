@@ -1,4 +1,4 @@
-# 🔐 CI/CD Security Pipeline with OWASP ZAP & GitHub ActionsAdd commentMore actions
+# 🔐 CI/CD Security Pipeline with OWASP ZAP & GitHub Actions
 
 This project demonstrates a secure and automated CI/CD pipeline for scanning a vulnerable web application using Docker Compose and GitHub Actions. A key part of the pipeline is the integration of [OWASP ZAP](https://www.zaproxy.org/), an open-source security scanner, which automatically scans the deployed app for common vulnerabilities.
 
