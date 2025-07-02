@@ -20,7 +20,7 @@ jobs:
       - name: Start Docker Compose (Juice Shop + ZAP)
         run: |
           docker compose up --abort-on-container-exit || echo "ZAP scan completed with findings"
-
+ 
       - name: Copy ZAP reports from container
         run: |
           ZAP_CONTAINER=$(docker ps -aqf "name=zap")
